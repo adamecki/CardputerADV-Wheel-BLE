@@ -1,18 +1,25 @@
+#include <Arduino.h>
 #include <M5Cardputer.h>
-#include "USBHIDGamepad.h"
+#include <BleGamepad.h>
 
-USBHIDGamepad Gamepad;
+// hotspot bro
+BleGamepad bleGamepad;
 
 int x = 120;
 
 float X = 0.0, Y = 0.0, Z = 0.0;
-const float alpha = 0.12; //smoothing parameter the lower, the smoother (0.01 to 1.0)
+const float alpha = 0.12; // smoothing parameter - the lower, the smoother (0.01 to 1.0)
 
 void setup() {
     M5.begin();
     M5Cardputer.begin();
-    Gamepad.begin();
-    M5Cardputer.Display.setTextSize(3.0, 3.0); 
+
+    bleGamepad.begin();
+    bleGamepad.setX(0);
+    bleGamepad.setY(0);
+
+    // Disable display backlight
+    M5Cardputer.Display.setBrightness(0);
 }
 
 void loop() {
@@ -37,27 +44,27 @@ void loop() {
 
     
     if (M5Cardputer.Keyboard.isKeyPressed('1')) {
-        Gamepad.pressButton(4);
+        bleGamepad.press(BUTTON_4);
     } else {
-        Gamepad.releaseButton(4);
+        bleGamepad.release(BUTTON_4);
     }
 
     if (M5Cardputer.Keyboard.isKeyPressed('2')) {
-        Gamepad.pressButton(2);
+        bleGamepad.press(BUTTON_2);
     } else {
-        Gamepad.releaseButton(2);
+        bleGamepad.release(BUTTON_2);
     }
 
     if (M5Cardputer.Keyboard.isKeyPressed('q')) {
-        Gamepad.pressButton(3);
+        bleGamepad.press(BUTTON_3);
     } else {
-        Gamepad.releaseButton(3);
+        bleGamepad.release(BUTTON_3);
     }
 
     if (M5Cardputer.Keyboard.isKeyPressed('`')) {
-        Gamepad.pressButton(1);
+        bleGamepad.press(BUTTON_1);
     } else {
-        Gamepad.releaseButton(1);
+        bleGamepad.release(BUTTON_1);
     }
     
     
@@ -68,14 +75,11 @@ void loop() {
     X = (alpha * rX) + ((1.0 - alpha) * X);
     //Y = (alpha * rY) + ((1.0 - alpha) * Y);
 
-    int wheelPos = map(X * 100, x * -1, x, 127, -128);
-    wheelPos = constrain(wheelPos, -128, 127);
-    //debug output
-    //M5Cardputer.Display.clear();
-    //M5Cardputer.Display.setCursor(10, 10);
-    //M5Cardputer.Display.printf("Wheel: %d\nY: %.2f\n", wheelPos, Y);
+    int wheelPos = map(X * 100, x * -1, x, 40959, -8192);
+    wheelPos = constrain(wheelPos, -8192, 40959);
+    if (wheelPos > 32767) {wheelPos = 32767;}
 
-    Gamepad.leftStick((int8_t)wheelPos, 0);
+    bleGamepad.setX((int16_t)wheelPos);
 
     delay(5); 
 }
