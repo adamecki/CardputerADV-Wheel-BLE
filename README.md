@@ -28,10 +28,10 @@ No pairing mode activation is needed. The device will show up as "ESP32 BLE Game
 ## Controls:
 * `Tilt` - Steering (X-axis)
 
-* `\`` - Gamepad Button 1
+* ` - Gamepad Button 1
 * `2` - Gamepad Button 2
 * `q` - Gamepad Button 3
 * `1` - Gamepad Button 4
 
-* `;` - Decrease sensitivity
-* `.` - Increase sensitivity
+* `;` - Increase sensitivity
+* `.` - Decrease sensitivity
