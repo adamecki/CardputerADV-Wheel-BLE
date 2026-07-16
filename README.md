@@ -20,18 +20,32 @@ No pairing mode activation is needed. The device will show up as "ESP32 BLE Game
 ## Recommended Euro Truck Simulator 2 settings
 - Steering type: `Steering wheel`
 - Steering sensitivity: `1,00`
-- Steering non-linearity: `1,00`
+- Steering non-linearity: `2,00`
 - Steering axis: `X axis`
-- Steering axis dead zone: `5%` to `10%`
+- Steering axis dead zone: `0%`
 - Steering axis mode: `Centered`
 
 ## Controls:
 * `Tilt` - Steering (X-axis)
 
-* ` - Gamepad Button 1
-* `2` - Gamepad Button 2
-* `q` - Gamepad Button 3
-* `1` - Gamepad Button 4
+* `=` or top button - controller button 1
+* `1` - controller button 2
+* `2` - controller button 3
+* `-` - controller button 4
+* `OK` - controller button 5
+* `E` - controller button 6
+* `S` - controller button 7
+* `A` - controller button 8
+* `D` - controller button 9
+* `F` - controller button 10
+* `G` - controller button 11
+* `H` - controller button 12
+* `O` - controller button 13
+* `J` - controller button 14
+* `K` - controller button 15
+* `L` - controller button 16
+
+* `Space` - enable / disable display
 
 * `;` - Increase sensitivity
 * `.` - Decrease sensitivity
